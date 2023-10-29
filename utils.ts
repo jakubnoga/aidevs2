@@ -1,5 +1,3 @@
-import "dotenv";
-
 if (process.env.APIKEY == null) {
   throw new Error("Missing APIKEY env");
 }
@@ -34,7 +32,7 @@ export async function task<T>(token: string | Promise<string>): Response<T> {
 
 export async function answer(
   token: string | Promise<string>,
-  answer: string
+  answer: any
 ): AnswerResponse {
   const url = new URL(`${ENDPOINT.ANSWER}/${await token}`, BaseUrl);
   const body = JSON.stringify({
