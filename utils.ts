@@ -25,9 +25,19 @@ export async function authorize(taskname: string): AuthResponse {
   }).then((response) => response.json<AuthResponse>());
 }
 
-export async function task<T>(token: string | Promise<string>): Response<T> {
+export async function task<T>(
+  token: string | Promise<string>,
+  formData?: FormData
+): Response<T> {
   const url = new URL(`${ENDPOINT.TASK}/${await token}`, BaseUrl);
-  return fetch(url).then((response) => response.json<Response<T>>());
+  let init: FetchRequestInit | undefined;
+  if (formData) {
+    init = {
+      body: formData,
+      method: "POST",
+    };
+  }
+  return fetch(url, init).then((response) => response.json<Response<T>>());
 }
 
 export async function answer(
