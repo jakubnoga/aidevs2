@@ -1,8 +1,7 @@
 import { OpenAI } from "langchain/llms/openai";
 import { answer, authorize, task } from "./utils";
 import { ChatPromptTemplate } from "langchain/prompts";
-import { LLMChain } from "langchain/chains";
-import { HumanMessage, SystemMessage } from "langchain/schema";
+import { LLMChain } from "langchain/chains";;
 
 type LiarTask = {
   answer: string;
