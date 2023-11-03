@@ -43,8 +43,7 @@ ${context.join("\n")}
     ],
   });
 
-  let $answer = choice.message.content;
-  return $answer;
+  return choice.message.content;
 }
 
 async function findContext(openai: OpenAI) {
@@ -77,9 +76,5 @@ Examples:
   });
   const name = choice.message.content;
 
-  if (name == null) {
-    throw new Error("Failed to extract name");
-  }
-
-  return input.filter((statement) => statement.match(new RegExp(name)));
+  return input.filter((statement) => statement.match(new RegExp(name ?? "#$%^^#$%")));
 }
